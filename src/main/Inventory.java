@@ -9,14 +9,27 @@ import entity.Electronics;
 import interfaces.Product;
 
 public class Inventory {
+
+    public void addProduct(Product product) {
+        List<Product> productList = new ArrayList<>();
+        productList.add(product);
+    }
+
+    public static double calculateTotalInventoryValue(List<Product> productList) {
+        return productList.stream().mapToDouble(Product::TotalValue).sum();
+    }
+
     public static void main(String[] args) {
         List<Product> productList = new ArrayList<>();
+        Inventory inv = new Inventory();
 
         productList.add(new Electronics("101", "Refrigerator", 380.75, 12));
 
         productList.add(new Electronics("102", "Washing Machine", 18000.00, 4));
 
         productList.add(new Clothing("141", "Denim Jeans", 2500.75, 30));
+
+        inv.addProduct(new Electronics("103", "Television", 90000, 100));
 
         productList.forEach(product -> {
             double TotalValue = product.TotalValue();
@@ -25,8 +38,7 @@ public class Inventory {
                     + product.getName() + ", Total Value of the product in the list: Rs. " + TotalValue);
         });
 
-        // used method reference
-        double totalInventoryValue = productList.stream().mapToDouble(Product::TotalValue).sum();
+        double totalInventoryValue = calculateTotalInventoryValue(productList);
 
         System.out.println("Total Inventory Value: " + totalInventoryValue);
 
@@ -40,4 +52,5 @@ public class Inventory {
         highQuantityProducts
                 .forEach(Product -> System.out.println(Product.getName() + " : " + Product.getClass().getSimpleName()));
     }
+
 }
