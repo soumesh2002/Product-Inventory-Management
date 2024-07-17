@@ -8,6 +8,13 @@ public class Electronics implements Product {
     private double price;
     private int quantity;
 
+    public Electronics(String productId, String name, double price, int quantity) {
+        this.productId = productId;
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
     @Override
     public String getProductId() {
         return productId;

@@ -8,6 +8,13 @@ public class Clothing implements Product {
     private double price;
     private int quantity;
 
+    public Clothing(String productId, String name, double price, int quantity) {
+        this.productId = productId;
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
     @Override
     public String getProductId() {
         return productId;
